@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Avaliação Continua - 1</title>
+
+    <!-- MATHJAX 3 (através da CDN) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- MATHJAX 3 (salvo no computador) -->
+    <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+
+    <h1>Avaliação Continuada 1</h1>
+    <hr>
+
+    <h2>Questão 1</h2>
+
+    <span style="position: relative; left: 40px;">
+        <strong>Enunciado: </strong> Projete um algoritmo para calcular ⌊√n⌋ utilizando apenas comandos de seleção,
+        repetição <br>
+        e atribuição, e as quatro operações aritméticas básicas. Obs.: Como apenas a parte inteira do valor raiz <br>
+        quadrada é solicitado, use um algoritmo iterativo simples que testa todos os valores inteiros dentro de<br>
+        uma faixa de valores possíveis.
+    </span>
+
+    <br><br><br>
+
+    <div style="position: relative; left: 40px; height: 270px; width: 550px;">
+        <span>
+            <div style="position: absolute; top: 0; left: 0">
+                <pre>x = 0</pre>
+                <pre><strong>leia</strong> x</pre>
+                <pre><strong>para</strong> i = 1<strong>, enquanto</strong> i < x <strong>faça</strong></pre>
+                <pre>   <strong>se</strong> i * i > x</pre>
+                <pre>       <strong>retorne</strong> i - 1</pre>
+                <pre>       <strong>saia do laço</strong></pre>
+                <pre>   <strong>se</strong> i * i <strong>for igual a</strong> x</pre>
+                <pre>       <strong>retorne</strong> i</pre>
+                <pre>       <strong>saia do laço</strong></pre>
+            </div>
+        </span>
+    </div>
+    <br>
+    <hr>
+
+    <h2>Questão 2</h2>
+
+    <span style="position: relative; left: 40px;">
+        <strong>Enunciado: </strong> Considere a ordenação de n números armazenados no vetor A=⟨a1,a2,…,an⟩, localizando
+        primeiro <br>
+        o menor elemento de A e permutando esse elemento com o elemento contido em A[1]. Em seguida, determine o <br>
+        segundo menor elemento de A e permute-o com A[2]. Continue dessa maneira para os primeiros n - 1 elementos <br>
+        de A. Escreva o pseudocódigo para esse algoritmo, conhecido como ordenação por seleção. Forneça os tempos de
+        <br>
+        execução T(n) do melhor caso e do pior caso da ordenação por seleção. O cálculo de T(n) deve ser feito de modo
+        <br>
+        formal, como foi realizado em sala para a ordenação por inserção.
+    </span>
+
+    <br><br><br>
+
+    <div style="position: relative; left: 40px; height: 270px; width: 550px;">
+        <br>
+        <span>
+            <div style="position: absolute; top: 0; left: 0">
+                <strong>SelectionSort(</strong>A, n<strong>)</strong> <br><br>
+                <pre><strong>para</strong> i = 1<strong> até </strong> n <strong>faça</strong></pre>
+                <pre>   min =  i</pre>
+                <pre>   <strong>para</strong> j = i <strong>até</strong> n <strong>faça</strong></pre>
+                <pre>       <strong>se</strong> A[j] < A[min]</pre>
+                <pre>           min = j</pre>
+                <pre>       aux = A[j]</pre>
+                <pre>       A[j] = A[min]</pre>
+                <pre>       A[min] = aux</pre>
+            </div>
+
+            <div style="position: absolute; top: 0; left: 65%; text-align: center">
+                <strong>Custo</strong> <br><br>
+                <pre><strong>c1</strong></pre>
+                <pre><strong>c2</strong></pre>
+                <pre><strong>c3</strong></pre>
+                <pre><strong>c4</strong></pre>
+                <pre><strong>c5</strong></pre>
+                <pre><strong>c6</strong></pre>
+                <pre><strong>c7</strong></pre>
+                <pre><strong>c8</strong></pre>
+            </div>
+
+            <div style="position: absolute; top: 0; right: 0; text-align: center">
+                <strong>Quantas vezes</strong> <br><br>
+                <pre>n + 1</pre>
+                <pre>n</pre>
+                \(\sum_{i = 1}^{n + 1} i\) <br>
+                \(\sum_{i = 1}^{n + 1} (i - 1)\) <br>
+                \(\sum_{i = 2}^{n + 1} (i - 1)\) <br>
+                <pre>n</pre>
+                <pre>n</pre>
+                <pre>n</pre>
+            </div>
+            <hr>
+        </span>
+    </div>
+    <div style="position: relative; left: 40px; height: 730px; width: 550px;">
+        <hr>
+        <span>
+            <br>
+            <strong>Melhor caso:</strong> o vetor está corretamente ordenado. <br>
+            <strong>Desenvolvendo:</strong> <br><br>
+            <span style="position: relative; left: 50px;">
+                \(T(n) = c_1 * (n + 1) + c_2 * n + c_3 * \sum_{i = 1}^{n + 1} i + c_4 * \sum_{i = 1}^{n + 1} (i - 1) + c_5 * \sum_{i = 1}^{n + 1} (i - 1) + c_6 * n + c_7 * n + c_8 * n\)<br>
+                \(T(n) = c_1 * (n + 1) + c_2 * n + c_3 * \dfrac{n(n+1)}{2} + c_4 * \dfrac{n²}{2} + c_6 * n + c_7 * n + c_8 * n\)<br>
+                \(T(n) = c_1 * n + c_1 + c_2 * n + c_3 * \dfrac{n²+n}{2} + c_4 * \dfrac{n²}{2} + c_6 * n + c_7 * n + c_8 * n\)<br>
+                \(T(n) = (\dfrac{c_3}{2} + \dfrac{c_4}{2})*n² + (c_1 + c_2 + c_3 + c_6 + c_7 + c_8)*n + c_1\)<br>
+                \(T(n) = a*n² + b*n + c\)<br><br>
+            </span>
+            <strong>Logo:</strong> \(a\), \(b\) e \(c\) são constantes e a função possui um crescimento quadrático em \(n\).
+            <br>
+        </span>
+        <span>
+            <br>
+            <strong>Pior caso:</strong> o vetor está ordenado de forma inversa. <br>
+            <strong>Desenvolvendo:</strong> <br><br>
+            <span style="position: relative; left: 50px;">
+                \(T(n) = c_1 * (n + 1) + c_2 * n + c_3 * \sum_{i = 1}^{n + 1} i + c_4 * \sum_{i = 1}^{n + 1} (i - 1) + c_5 * \sum_{i = 1}^{n + 1} (i - 1) + c_6 * n + c_7 * n + c_8 * n\)<br>
+                \(T(n) = c_1 * (n + 1) + c_2 * n + c_3 * \dfrac{n(n+1)}{2} + c_4 * \dfrac{n²}{2} + c_5 * \dfrac{n²}{2} + c_6 * n + c_7 * n + c_8 * n\)<br>
+                \(T(n) = c_1 * n + c_1 + c_2 * n + c_3 * \dfrac{n²+n}{2} + c_4 * \dfrac{n²}{2} + c_5 * \dfrac{n²}{2} + c_6 * n + c_7 * n + c_8 * n\)<br>
+                \(T(n) = (\dfrac{c_3}{2} + \dfrac{c_4}{2} + \dfrac{c_5}{2})*n² + (c_1 + c_2 + c_3 + c_6 + c_7 + c_8)*n + c_1\)<br>
+                \(T(n) = a*n² + b*n + c\)<br><br>
+            </span>
+            <strong>Logo:</strong> \(a\), \(b\) e \(c\) são constantes e a função possui um crescimento quadrático em \(n\).
+        </span>
+    </div>
+
+    <hr>
+
+    <h2>Questão 3</h2>
+
+    <ol>
+        <li style="font-size: 20px"></li>
+        <p><strong>Enunciado: </strong>Prove que \((n + 1)² = O(n²)\) </p>
+        <p><strong>Demonstração: </strong></p>
+
+        <p style="left: 40px; position: relative">
+            Temos que \(f(n) = (n + 1)²\) e \(g(n) = n²\). <br>
+            Pela definição de Big - O: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(\exists\) \(c\), \(n_0 > 0\) tal que \((n + 1)² \leq c\) \(*\) \(n²\), \( \forall n \geq n_0\)
+            </span><br><br>
+
+            Desenvolvendo a desigualdade, temos que: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \((n + 1)² \leq c\) \(*\) \(n²\) <br>
+                \(n² + 2n + 1 \leq c\) \(*\) \(n²\)
+            </span><br><br>
+
+            Note que \(2n \leq 2n²\) para todo \(n \geq 0 \) e \(1 \leq n²\) para todo \(n \geq 1 \). <br>
+            Logo: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(n² + 2n + 1 \leq n² + 2n² + n² = 4n²\) para todo \(n \geq 1\)
+            </span><br><br>
+
+            Assim, \(f(n) \leq c \) \(*\) \(g(n)\) para \(c = 4\) e \( n \geq n_0 = 1\).
+        </p>
+
+
+        <li style="font-size: 20px"></li>
+        <p><strong>Enunciado: </strong>Prove que \(n² - 3n - 18 = \Omega(n²)\) </p>
+        <p><strong>Demonstração: </strong></p>
+
+        <p style="left: 40px; position: relative">
+            Temos que \(f(n) = n² - 3n - 18\) e \(g(n) = n²\). <br>
+            Pela notação Big - \(\Omega\): <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(\exists\) \(c\), \(n_0 > 0\) tal que \(c\) \(*\) \(n² \leq n² -3n - 18 \), \( \forall n \geq n_0\)
+                <br><br>
+            </span>
+
+            Escolhendo \(c = \dfrac{1}{2}\), obtemos: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(c\) \(*\) \(n² \leq n² -3n - 18 \) <br>
+                \(\dfrac{1}{2}\) \(*\) \(n² \leq n² -3n - 18 \) <br>
+                \(\dfrac{n²}{2}\) \(\leq n² -3n - 18 \) <br>
+                \(n²\) \(\leq 2n² -6n - 36 \) <br>
+                \( 0 \leq n² -6n - 36 \) <br><br>
+            </span>
+
+            Desenvolvendo a equação de segundo grau, temos: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(\Delta = 6² - 4\) \(*\) \(1\) \(*\) \((-36)\) <br>
+                \(\Delta = 36 + 144\) <br>
+                \(\Delta = 180\) <br><br>
+
+                <span style="position: relative">
+                    \(x_1 = \dfrac{-(-6) + \sqrt{180}}{2}\) <br>
+                    \(x_1 = \dfrac{6 + 13,4}{2}\) <br>
+                    \(x_1 = \dfrac{19,4}{2}\) <br>
+                    \(x_1 = 9,7\) <br>
+                </span>
+
+                <br>
+
+                <span style="position: relative">
+                    \(x_2 = \dfrac{-(-6) - \sqrt{180}}{2}\) <br>
+                    \(x_2 = \dfrac{6 - 13,4}{2}\) <br>
+                    \(x_2 = \dfrac{-7,4}{2}\) <br>
+                    \(x_2 = -3,7\) <br><br>
+                </span>
+            </span>
+
+            Note que 9,7 é o único valor válido, pois é positivo. <br>
+            Assim, \(c\) \(*\) \(g(n) \leq f(n)\) para \(c = \dfrac{1}{2}\) e \( n \geq n_0 = 10\).
+
+        </p>
+
+        <li style="font-size: 20px"></li>
+        <p><strong>Enunciado: </strong>Prove que \(n³ - 3n² - n = \Omega(n³)\) </p>
+        <p><strong>Demonstração: </strong></p>
+
+        <p style="left: 40px; position: relative">
+            Temos que \(f(n) = n³ - 3n² - n\) e \(g(n) = n³\). <br>
+            Pela notação Big - \(\Omega\): <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(\exists\) \(c\), \(n_0 > 0\) tal que \(c\) \(*\) \(n³ \leq n³ -3n² - n \), \( \forall n \geq n_0\)
+                <br><br>
+            </span>
+
+            Escolhendo \(c = 0\), obtemos: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                0 \(\leq n³ -3n² - n \) <br>
+                0 \(\leq n² -3n - 1 \)
+                <br><br>
+            </span>
+
+            Desenvolvendo a equação de segundo grau, temos: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(\Delta = (-3)² - 4\) \(*\) \(1\) \(*\) \((-1)\) <br>
+                \(\Delta = 9 + 4\) <br>
+                \(\Delta = 13\) <br><br>
+
+                <span style="position: relative">
+                    \(x_1 = \dfrac{-(-3) + \sqrt{13}}{2}\) <br>
+                    \(x_1 = \dfrac{3 + 3,6}{2}\) <br>
+                    \(x_1 = \dfrac{6,6}{2}\) <br>
+                    \(x_1 = 3,3\) <br>
+                </span>
+
+                <br>
+
+                <span style="position: relative">
+                    \(x_2 = \dfrac{-(-3) - \sqrt{13}}{2}\) <br>
+                    \(x_2 = \dfrac{3 - 3,6}{2}\) <br>
+                    \(x_2 = \dfrac{-0,6}{2}\) <br>
+                    \(x_2 = -0,3\) <br><br>
+                </span>
+            </span>
+
+            Note que 3,3 é o único valor válido, pois é positivo. <br>
+            Assim, \(c\) \(*\) \(g(n) \leq f(n)\) para \(c = 0\) e \( n \geq n_0 = 4\).
+
+        </p>
+
+        <li style="font-size: 20px"></li>
+        <p><strong>Enunciado: </strong>Prove que \(lg(100n³ + 200n + 300)² = O(lg\) n) </p>
+        <p><strong>Demonstração: </strong></p>
+
+        <p style="left: 40px; position: relative">
+            Temos que \(f(n) = lg(100n³ + 200n + 300)²\) e \(g(n) = lg\) n. <br>
+            Pela notação Big + O: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(\exists\) \(c\), \(n_0 > 0\) tal que \(lg(100n³ + 200n + 300)² \leq c\) \(*\) \(lg\) n, \( \forall n
+                \geq n_0\) <br><br>
+            </span>
+
+            Desenvolvendo a desigualdade, temos: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(lg(100n³ + 200n + 300)² \leq c\) \(*\) \(lg\) n<br>
+                \(2lg(100n³ + 200n + 300) \leq c\) \(*\) \(lg\) n<br>
+                <br>
+            </span>
+
+            Note que \(200n \leq 200n³\) para todo \(n \geq 0\) e \(300 \leq 300n³\) para todo \(n \geq 1\). <br>
+            Assim, obtemos: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(2lg(100n³ + 200n + 300) \leq 2lg(100n³ + 200n³ + 300n³) = 2lg(600n³)\) <br>
+                <br>
+            </span>
+
+            Desenvolvendo: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(2lg(100n³ + 200n + 300) \leq 2lg(600n³)\) <br>
+                \(lg(100n³ + 200n + 300) \leq lg(600n³)\) <br>
+                \(lg(100n³ + 200n + 300) \leq lg(600) + lg(n³)\) <br>
+                \(lg(100n³ + 200n + 300) \leq lg(600) + 3lg(n)\) <br>
+                <br>
+            </span>
+
+            Como \(100n³\) é o termo de maior grau de \(lg(100n³ + 200n + 300)\), podemos simplificar: <br><br>
+
+            <span style="position: relative; left: 50px;">
+                \(lg(100n³) \leq lg(600) + 3lg(n)\) <br>
+                \(lg(100) + lg(n³) \leq lg(600) + 3lg(n)\) <br>
+                \(lg(600) - lg(6) + 3lg(n) \leq lg(600) + 3lg(n)\) <br>
+                \( 3lg(n) - lg(6) \leq + 3lg(n)\) <br><br>
+            </span>
+
+            Assim, \(f(n) \leq c\) \(*\) \(g(n)\) para \(c = 1\) e \(n > n_0 = 1\).
+        </p>
+
+    </ol>
+
+</body>
+
+</html>
