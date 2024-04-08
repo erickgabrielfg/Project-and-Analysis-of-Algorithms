@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Avaliação Continua - 2</title>
+
+    <!-- MATHJAX 3 (através da CDN) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- MATHJAX 3 (salvo no computador) -->
+    <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+    <h1>Avaliação Continuada 1</h1>
+    <hr>
+
+    <h2>Questão 1</h2>
+
+    <ol type="a">
+
+        <span style="font-size: 20px;""><strong>Enunciado:</strong> (Partição). A entrada é uma lista L[1..n] de números, com n≥1. Lembre-se que os nossos arrays nessa disciplina começam com o índice 1. O elemento L[1] é chamado de pivô. Seja k o número de elementos de L com valor menor ou igual ao pivô. Seu objetivo é especificar um algoritmo de tempo linear Θ(n) para reorganizar os elementos de L de modo que as três condições a seguir sejam satisfeitas:</span>
+
+        <br><br>
+
+        <ul style=" list-style: disc;">
+            <li style="font-size: 20px;">O pivô L[1] seja reposicionado para a posição k.</li>
+            <li style="font-size: 20px;">Os elementos com valor menor ou igual ao pivô sejam colocados nas k primeiras
+                posições.</li>
+            <li style="font-size: 20px;">Os elementos com valor maior que o pivô sejam colocados nas últimas n−k
+                posições.</li>
+            </ul>
+
+            <br><br>
+
+            <span style="font-size: 20px;""><strong>Resposta:</strong></span>
+        
+        <br><br>
+
+            <li style=" font-size: 20px; left: 20px; position: relative;"></li>
+
+                <br>
+
+                <span style="font-size: 20px; position: relative; left: 30px;">
+                    <strong>Medida de progressão:</strong> No início de cada iteração i no primeiro laço, podemos
+                    garantir que todos os elementos no subvetor L[ini + 1 ... i - 1] são menores ou iguais ao pivô e
+                    todos
+                    os elementos no subvetor L[j + 1 ... fim] são maiores que o pivô.
+                </span>
+
+                <li style="font-size: 20px; left: 20px; position: relative;"></li>
+
+                <br>
+
+                <span style="font-size: 20px; position: relative; left: 30px;">
+                    O pivô ser o primeiro elemento do vetor, o índice "i" ser o resultado da soma "ini + 1" e o índice
+                    "j" ser igual ao ao último índice do vetor.
+                </span>
+
+                <li style="font-size: 20px; left: 20px; position: relative;"></li>
+
+                <pre style="font-size: 15px; position: relative;">
+                    void algoritmo(int L[], int ini, int fim) {
+                        int pivo = L[ini];
+                        int i = ini + 1;
+                        int j = fim;
+                    
+                        while (i <= j) {
+                            while (i <= j && L[i] <= pivo)
+                                i++;
+                    
+                            while (i <= j && L[j] > pivo)
+                                j--;
+                    
+                            if (i < j) {
+                                int aux = L[i];
+                                L[i] = L[j];
+                                L[j] = aux;
+                            }
+                        }
+                    
+                        int aux = L[ini];
+                        L[ini] = L[j];
+                        L[j] = aux;
+                    }                    
+                </pre>
+
+                <span style="font-size: 20px; position: relative; left: 30px;">
+                    Vamos provar que a invariante do laço se mantém ao decorrer da iteração.
+                </span>
+
+                <br><br>
+
+                <span style="font-size: 20px; position: relative; left: 30px;">
+                    <strong>Primeiro laço: </strong>esse laço ocorrerá equanto "i <= j", garantindo que a iteração
+                        ocorra enquanto tiver elementos a serem comparados e trocados, pois "i" sempre estará a esquerda
+                        de "j" . 
+                </span>
+
+                <br><br>
+
+                <span style="font-size: 20px; position: relative; left: 30px;">
+                    </strong>Segundo laço: </strong>esse laço garante que o índice "i" aponte sempre pro primeiro
+                    elemento maior que o pivô a direita, visto que ele ocorrerá enquanto "L[i] <= pivo". 
+                </span>
+
+                <br><br>
+
+                <span style="font-size: 20px; position: relative; left: 30px;">
+                    <strong>Terceiro laço: </strong>esse laço garante que o índice "j" aponte sempre pro
+                    primeiro
+                    elemento menor ou igual ao pivô a esquerda, visto que ele ocorrerá enquanto "L[j] >
+                    pivo".
+                </span>
+
+                                <br><br>
+
+                                <span style="font-size: 20px; position: relative; left: 30px;">
+                                    <strong>Condicional: </strong> troca os elementos "L[i]" e "L[j]" sempre que a
+                                    condição for aceita.
+                                </span>
+
+                                <br><br>
+
+                                <span style="font-size: 20px; position: relative; left: 30px;">
+                                    Assim, todos esses passos garantem a integridade da invariante de laço.
+                                </span>
+
+                                <br>
+
+                                <li style="font-size: 20px; left: 20px; position: relative;"></li>
+
+                                <span style="font-size: 20px; position: relative; left: 30px;">
+                                    <strong>Invariante:</strong> garante, pois, ao término da execução do loop, todos os
+                                    elementos a
+                                    esquerda do pivô são menores que o ele e todos os elementos a sua direita são
+                                    menores que
+                                    ele.
+                                </span>
+
+                                <br><br>
+
+                                <span style="font-size: 20px; position: relative; left: 30px;">
+                                    <strong>Condição de sáida:</strong> garante, pois o laço termina quando "i <= j" for
+                                        falso, satisfazendo a condição exigida "j = i - 1" . </span>
+                                        <br>
+
+                                        <li style="font-size: 20px; left: 20px; position: relative;"></li>
+
+                                        <pre style="font-size: 15px; position: relative;">
+                    13. aux = L[i]
+    
+                    14. L[i] = L[j]
+    
+                    15. L[j] = aux
+                </pre>
+
+                <span style="font-size: 20px; position: relative; left: 30px;">
+                Todas as pós-condições estão corretas, visto que: "i" só avança quando "L[i]
+                <= pivo", mantendo a condição de que todos os elementos "L[ini+1 ... i - 1]"
+                são menores ou iguais ao pivô; "j" só avança quando "L[j] > pivo" ,
+                mantendo a condição de que todos os elementos "L[j ... fim]" são maiores
+                que o pivô. </span>
+                
+                <br>
+
+                <li style="font-size: 20px; left: 20px; position: relative;"></li>
+
+                <pre style="font-size: 15px; position: relative;">
+                algoritmo(L[n], ini, fim):
+
+                1.  pivo = L[ini]
+
+                2.  i = ini + 1
+
+                3.  j = fim
+
+                4.  para i de 1 até j faça
+                
+                5.      para i de 1 até j e L[i] menor ou igual ao pivo faça
+                
+                6.          i = i + 1
+                
+                7.      para i de 1 até j e L[i] maior que o pivo faça
+
+                8.          j = j - 1
+
+                9.      se i for menor que j faça
+
+                10.         aux = L[i]
+
+                11.         L[i] = L[j]
+
+                12.         L[j] = aux
+
+                13. aux = L[i]
+
+                14. L[i] = L[j]
+
+                15. L[j] = aux
+
+                </pre>
+
+                <li style="font-size: 20px; left: 20px; position: relative;"></li>
+
+                <br>
+
+                <li style="font-size: 20px; left: 20px; position: relative;"></li>
+
+                <br>
+
+                <span style="font-size: 20px; position: relative; left: 30px;">
+                    No pior caso, o algoritmo possui a complexidade \(\Theta(n²)\).
+                </span>
+
+    </ol>
+
+    <br><br>
+    <hr>
+
+    <h2>Questão 2</h2>
+
+    <br>
+
+    <ol>
+
+        <span style="font-size: 20px;"><strong>Enunciado:</strong> Determine a complexidade do algoritmo abaixo em
+            função do valor de n. Forneça também a complexidade de cada linha. Cada execução de f(i) tem tempo Θ(i),
+            cada execução de g(j) tem tempo Θ(logn), e cada execução de h(i) tem tempo Θ(n2).</span>
+
+        <br><br>
+
+        <span style="font-size: 20px;""><strong>Resposta:</strong></span>
+            
+        <br><br>
+
+        <span style=" font-size: 20px;"><strong>Algoritmo:</strong></span>
+
+        <br><br>
+
+        <pre>   algoritmo(n):</pre>
+        <pre>   1.  para i de 1 até n faça</pre>
+        <pre>   2.      f(i)</pre>
+        <pre>   3.      para j de i + 1 até n faça</pre>
+        <pre>   4.          g(j)</pre>
+        <pre>   5.  para i de 1 até n faça</pre>
+        <pre>   6.      h(i)</pre>
+
+        <br><br>
+
+        <span style="font-size: 20px;"><strong>Complexidade:</strong></span>
+
+        <br><br>
+
+        <p style="font-size: 15px; position: relative; left: 30px;"><strong>1. \(\Theta (n)\)</strong></p>
+        <p style="font-size: 15px; position: relative; left: 30px;"><strong>2. \(\Theta (i)\)</strong></p>
+        <p style="font-size: 15px; position: relative; left: 30px;"><strong>3. \(\Theta (n)\)</strong></p>
+        <p style="font-size: 15px; position: relative; left: 30px;"><strong>4. \(\Theta (log n)\)</strong></p>
+        <p style="font-size: 15px; position: relative; left: 30px;"><strong>5. \(\Theta (n)\)</strong></p>
+        <p style="font-size: 15px; position: relative; left: 30px;"><strong>6. \(\Theta (n²)\)</strong></p>
+
+        <br><br>
+
+        <span style="font-size: 20px;"><strong>Complexidade do algoritmo:</strong></span>
+
+        <p style="font-size: 15px; position: relative; left: 30px;"><strong>\(\Theta (n²)\)</strong>, visto que é a
+            complexidade de maior grau do algoritmo.</p>
+
+
+        <br><br>
+    </ol>
+
+
+</body>
+
+</html>
