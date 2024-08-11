@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Avaliação Continua - 4</title>
+
+    <!-- MATHJAX 3 (através da CDN) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- MATHJAX 3 (salvo no computador) -->
+    <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+    <h1>Avaliação Continuada 4</h1>
+    <hr>
+
+    <h2>Questão 1</h2>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Enunciado: </strong>Use o método da árvore de recursão para dar um bom limitante superior assintótico
+        para a recorrência T(n)=4T(⌊n/2⌋)+cn, onde c é uma constante.
+    </p>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Demonstração:</strong>
+        <br><br>
+        Seja \(T(n)=4T(⌊n/2⌋)+cn\).
+        <br>
+        Queremos achar um limite superior para T(n) utilizando uma árvore de recorrência.
+        <br><br>
+        Irei supor que n é uma potênica de 2, ou seja, \(n = 2^k\).
+        <br>
+        Assim, obteremos:
+        <br><br>
+        $$
+        \begin{align*}
+        T(n) & = 4T(n/2)+cn \\
+        \end{align*}
+        $$
+        <br><br>
+        Com base nessa equação, obtemos a seguinte árvore.
+        <br><br>
+        \begin{array} 
+        {|r|r|}
+        \hline \text{nível} & \text{tamanho do nó} & \text{nós} & \text{custo do nível} \\ 
+        \hline 0 & n/2⁰ & 4⁰ & 2⁰cn\\ 
+        \hline 1 & n/2¹ & 4¹ & 2¹cn\\
+        \hline 2 & n/2² & 4² & 2³cn\\ 
+        \hline i & n/2^{i} & 4^{i} & 2^{i}cn\\ 
+        \hline lg_2n & n/2^{lg_2n} = 1 & 4^{lg_2n} & 2^{lgn}cn = cn²\\ 
+        \hline 
+        \end{array}
+        <br><br>
+        Assim, obtemos o seguinte somatório dos custos:
+        <br><br>
+        $$
+        \begin{align*}
+        T(n) & = \sum_{i=0}^{lg_2n - 1} 2^{i}cn + cn² \\
+        & = cn\sum_{i=0}^{lg_2n - 1} 2^{i} + cn² \\
+        & = cn[(2^{lg_2n} -1)/(2 - 1)] + cn² \\
+        & = cn(n^{lg_22}-1) + cn²\\
+        & = cn²-cn + cn²\\
+        & \leq 2n² - cn \\
+        & \leq 2n² \\
+        \end{align*}
+        $$
+        <br><br>
+        Assim, podemos concluir que: \(T(n) = O(n²)\).
+    </p>
+
+    <h2>Questão 2</h2>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Enunciado: </strong>Verifique o limite superior obtido na questão anterior usando o método de
+        substituição.
+    </p>
+
+    <p style="position: relative; margin: 40px">
+        <strong>Demonstração:</strong>
+        <br><br>
+        Seja \(T(n) = 4T(⌊n/2⌋)+cn\).
+        <br>
+        Queremos provar que \(T(n) \leq bn²\) \(\forall n > n0\), onde b e n são constantes positivas.
+        <br><br>
+        Vou provar por indução em n.
+        <br><br>
+        Hipótese Indutiva: Suponha que \(\forall n0 \leq k \leq n\), \(T(k) \leq bk²\), onde b e k são constantes
+        positivas.
+        <br><br>
+        Passo Indutivo:
+        <br><br>
+        $$
+        \begin{align*}
+        T(n) & = 4T(⌊n/2⌋)+cn \\
+        & \leq 4b(n/2)² + cn \\
+        & = 4b(n²/4) + cn \\
+        & = bn² + cn
+        \end{align*}
+        $$
+        <br><br>
+        O passo falha, pois não podemos dizer que \(bn² + cn \leq bn²\).
+        <br><br>
+        Hipótese Indutiva 2: Suponha que \(\forall n0 \leq k \leq n\), \(T(k²) \leq bk² - dk\), onde b, k e d são
+        constantes positivas.
+        <br><br>
+        Passo Indutivo:
+        <br><br>
+        $$
+        \begin{align*}
+        T(n) & = 4T(⌊n/2⌋)+cn \\
+        & \leq 4(b(n/2)² - d(n/2)) + cn \\
+        & = 4b(n²/4) - 4d(n/2) + cn \\
+        & = bn² -2dn + cn \\
+        & = bn² - dn - dn + cn \\
+        & \leq bn² - dn
+        \end{align*}
+        $$
+        <br><br>
+        Assim, podemos concluir que \(T(n) = O(n²)\).
+    </p>
+
+    <h2>Questão 3</h2>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Enunciado: </strong> Use o método mestre para fornecer limites assintóticos restritos para as
+        recorrências a seguir.
+    </p>
+
+    <ol type="a" style="position: relative; margin: 40px;">
+        <li> T(n)=2T(n/4)+1</li>
+        <li> T(n)=2T(n/4)+\(n²\)</li>
+        <li> T(n)=2T(n/4)+n</li>
+        <li> T(n)=2T(n/4)+\(\sqrt{n}\)</li>
+    </ol>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Demonstração:</strong>
+        <br><br>
+        <strong>a.</strong>
+        <br><br>
+        Nesse caso, a = 2, b = 4 e f(n) = 1.
+        <br><br>
+        \(n^{log_ba} = n^{log_42} = n^{1/2 \cdot log_22} = n^{1/2}\)
+        <br>
+        \(f(n) = 1\)
+        <br><br>
+        Veja que \(f(n) = 1 = n⁰ \leq n^{1/2 - \epsilon}\) para \(\epsilon = 1/2\) e \(\epsilon > 0\).
+        <br>
+        Ou seja, \(f(n) = O(n^{log_22 - 1/2})\) e o <strong>Caso 1</strong> do Teorema Mestre se aplica.
+        <br>
+        Então:
+        <br><br>
+        \(T(n) = \Theta(n^{log_ba}) = \Theta(n^{1/2}) = \Theta(\sqrt{n})\)
+        <br><br>
+        <strong>b. </strong>
+        <br><br>
+        Nesse caso, a = 2, b = 4 e f(n) = \(n²\).
+        <br><br>
+        \(n^{log_ba} = n^{log_42} = n^{1/2}\)
+        <br>
+        \(f(n) = n²\)
+        <br><br>
+        Veja que \(f(n) = n² \geq n^{1/2 + \epsilon}\) para \(\epsilon = 1\) e \(\epsilon > 0\).
+        <br>
+        Ou seja, \(f(n) = \Omega(n^{log_ba + \epsilon})\) e o <strong>Caso 3</strong> do Teorema Mestre se aplica.
+        <br>
+        Assim, preciamos provar se a seguinte condição:
+        <br><br>
+        \(af(n/b) \leq cf(n)\) para algum \(c < 1\). <br>
+            \(2f(n/4) \leq cf(n)\)
+            <br>
+            \(n²/2 \leq cn²\)
+            <br>
+            \(c \geq 1/2\)
+            <br>
+            \(c = 0,6\)
+            <br><br>
+            Então:
+            <br><br>
+            \(T(n) = \Theta(f(n)) = \Theta(n²)\)
+            <br><br>
+            <strong>c. </strong>
+            <br><br>
+            Nesse caso, a = 2, b = 4 e f(n) = n.
+            <br><br>
+            \(n^{log_ba} = n^{log_42} = n^{1/2}\)
+            <br>
+            \(f(n) = n\)
+            <br><br>
+            Veja que \(f(n) = n¹ \geq n^{1/2 + \epsilon}\) para \(\epsilon = 1/2\) e \(\epsilon > 0\).
+            <br>
+            Ou seja, \(f(n) = \Omega(n^{log_ba+ \epsilon})\) e o <strong>Caso 3</strong> do Teorema Mestre se aplica.
+            <br>
+            Assim, preciamos provar se a seguinte condição:
+            <br><br>
+            \(af(n/b) \leq cf(n)\) para algum \(c < 1\). <br>
+                \(2f(n/4) \leq cf(n)\)
+                <br>
+                \(n/2 \leq cn\)
+                <br>
+                \(c \geq 1/2\)
+                <br>
+                \(c = 0.6\)
+                <br><br>
+                Então:
+                <br><br>
+                \(T(n) = \Theta(f(n)) = \Theta(n)\)
+                <br><br>
+                <strong>d. </strong>
+                <br><br>
+                Nesse caso, a = 2, b = 4, f(n) = \(\sqrt{n}\).
+                <br><br>
+                \(n^{log_ba} = n^{log_42} = n^{1/2}\)
+                <br>
+                \(f(n) = \sqrt{n}\)
+                <br><br>
+                Veja que \(f(n) = \sqrt{n} = n^{1/2}\).
+                <br>
+                Ou seja, \(f(n) = \Theta(n^{log_ba})\) e o <strong>Caso 2</strong> do Teorema Mestre se aplica.
+                <br>
+                Então:
+                <br><br>
+                \(T(n) = \Theta(n^{log_ba}lgn) = \Theta(n^{log_42}lgn) = \Theta(\sqrt{n}lgn)\)
+    </p>
+</body>
+
+</html>

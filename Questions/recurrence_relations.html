@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Avaliação Continua - 3</title>
+
+    <!-- MATHJAX 3 (através da CDN) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- MATHJAX 3 (salvo no computador) -->
+    <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+    <h1>Avaliação Continuada 3</h1>
+    <hr>
+
+    <h2>Questão 1</h2>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Enunciado: </strong> Utilize o método da substituição para calcular a complexidade de tempo de pior caso
+        do algoritmo abaixo. No algoritmo abaixo, o parâmetro N da função é um número inteiro. A operação de divisão
+        usada é a divisão inteira, ou seja, é a divisão que sempre resulta em um inteiro.
+    </p>
+
+    <div style="position: relative; left: 40px; height: 270px; width: 550px;">
+        <p>
+        <div style="position: absolute; top: 0; left: 0">
+            <pre>Algoritmo(N):</pre>
+            <pre>   Se N == 0 entao</pre>
+            <pre>       Retorne 0</pre>
+            <pre>   Senao</pre>
+            <pre>       soma = 0</pre>
+            <pre>       Para j = 1, ..., N faça</pre>
+            <pre>           soma = soma + j</pre>
+            <pre>       Retorne soma + Algoritmo(N/2)</pre>
+        </div>
+        </p>
+    </div>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Demonstração:</strong>
+    </p>
+
+    <p style="position: relative; margin: 40px;">
+        Com base no algoritmo acima, temos os seguintes tempos de execução em cada linha:
+        <br><br>
+        <strong>1.</strong> \(\Theta(1)\)
+        <br>
+        <strong>2.</strong> \(\Theta(1)\)
+        <br>
+        <strong>3.</strong> \(\Theta(1)\)
+        <br>
+        <strong>4.</strong> \(\Theta(1)\)
+        <br>
+        <strong>5.</strong> \(\Theta(n)\)
+        <br>
+        <strong>6.</strong> \(\Theta(n)\)
+        <br>
+        <strong>7.</strong> \(T(n/2)\)
+        <br><br>
+        Somando os tempos de execução, temos:
+        <br><br>
+        \(T(n) = 4\Theta(1) + 2\Theta(n) + T(n/2)\) = \(T(n/2) + n\)
+        <br><br>
+        Obtemos a seguinte recorrência:
+        <br><br>
+        \(
+        T(n)
+        \begin{cases}
+        \Theta(1), & \mbox{se } n = 0 \\
+        T(n) = T(n/2) + n, & \mbox{se } n > 0
+        \end{cases}
+        \)
+        <br><br>
+        Chutemos que \(T(n) = \Theta(n)\).
+        <br>
+        Assim, queremos provar que a solução para a recorrência \(T(n) = T(n/2) + n\) é \(\Theta(n)\).
+        <br><br>
+        <strong>Prova do limitante superior:</strong>
+        <br><br>
+        Seja \(T(n) = T(n/2) + n\).
+        <br>
+        Queremos provar que \(T(n) \leq c \cdot n\), \(\forall\) \(n \geq n0\), onde c e n0 são constantes positivas.
+        <br><br>
+        Vou provar por indução em n.
+        <br><br>
+        <strong>Hipótese Indutiva:</strong> Suponha que \(\forall\) k com \(n0 \leq k \leq n\), \(T(k) \leq c \cdot k\),
+        onde c e n0 são constantes positivas.
+        <br><br>
+        <strong>Passo Indutivo:</strong>
+        <br><br>
+        \(T(n) = T(n/2) + n \leq cn/2 + n = n(c/2 + 1)\)
+        <br><br>
+        \(n(c/2 + 1) \leq cn\)
+        <br>
+        \(c/2 + 1 \leq c\)
+        <br>
+        \(c + 2 \leq 2c\)
+        <br>
+        \(c \geq 2\)
+        <br><br>
+        <strong>Solução:</strong> c = 4 e \(n0 \geq 0\)
+        <br><br>
+        <strong>Caso Base:</strong>
+        <br><br>
+        Vamos escolher c = 4 e n0 = 0.
+        <br>
+        Para n = 1, temos:
+        <br><br>
+        \(T(1) = T(1/2) + 1 = 4 \cdot 1/2 + 1 = 3 \leq 4 \cdot 1 = 4\)
+        <br><br>
+        <strong>Solução: </strong> 1
+        <br><br>
+        <strong>Prova do limitante inferior: </strong>
+        <br><br>
+        Seja \(T(n) = T(n/2) + n\).
+        <br>
+        Queremos provar que \(T(n) \geq c \cdot n\), \(\forall\) \(n \geq n0\), onde c e n0 são constantes positivas.
+        <br><br>
+        Vou provar por indução em n.
+        <br><br>
+        <strong>Hipótese Indutiva:</strong> Suponha que \(\forall\) k com \(n0 \leq k \leq n\), \(T(k) \geq c \cdot k\),
+        onde c e n0 são constantes positivas.
+        <br><br>
+        <strong>Passo Indutivo:</strong>
+        <br><br>
+        \(T(n) = T(n/2) + n \geq cn/2 + n \)
+        <br><br>
+        \(cn/2 + n \geq cn\)
+        <br>
+        \(n(c/2 + 1 - c) \geq 0\)
+        <br><br>
+        \(c/2 + 1 - c > 0\)
+        <br>
+        \(c/2 < 1\) <br>
+            \(c < 1/2\) <br><br>
+                <strong>Solução:</strong> c = 1/4 e \(n0 \geq 0\)
+                <br><br>
+                <strong>Caso Base:</strong>
+                <br><br>
+                Vamos escolher c = 1/4 e n0 = 0.
+                <br>
+                Para n = 1, temos:
+                <br><br>
+                \(T(1) = T(1/2) + 1 = 1/4\cdot1/2 + 1 = 9/8 \geq 1/4 \cdot 1 = 2/8\)
+                <br><br>
+                <strong>Solução: </strong> 1
+    </p>
+
+    <h2>Questão 2</h2>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Enunciado: </strong> Utilizando o método de substituição, prove limitantes superiores e inferiores
+        assintóticos para as recorrências a seguir:
+    </p>
+
+    <pre>       <strong>a.</strong> T(n)=T(n/2)+15, onde T(1)=1. </pre>
+    <pre>       <strong>b.</strong> F(n)=2F(n/2)+n, onde F(1)=1. </pre>
+    <pre>       <strong>c.</strong> G(n)=2G(√n), onde G(1)=1. </pre>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Demonstração:</strong>
+    </p>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>a.</strong>
+        <br><br>
+        Chutemos que \(T(n) = \Theta(lgn)\).
+        <br>
+        Assim, queremos provar que a solução para a recorrência \(T(n) = T(n/2) + 15\) é \(\Theta(lgn\)).
+        <br><br>
+        <strong>Prova do limitante superior:</strong>
+        <br><br>
+        Seja \(T(n) = T(n/2) + 15\).
+        <br>
+        Queremos provar que \(T(n) \leq c \cdot lgn\), \(\forall\) \(n \geq n0\), onde c e n0 são constantes positivas.
+        <br><br>
+        Vou provar por indução em n.
+        <br><br>
+        <strong>Hipótese Indutiva:</strong> Suponha que \(\forall\) k com \(n0 \leq k \leq n\), \(T(k) \leq c \cdot
+        lgk\), onde c e n0 são constantes positivas.
+        <br><br>
+        <strong>Passo Indutivo:</strong>
+        <br><br>
+        \(T(n) = T(n/2) + 15 \leq clg(n/2) + 15 = c(lgn - lg2) + 15 = clgn -c + 15 \leq clgn\)
+        <br><br>
+        \(-c + 15 \leq 0\)
+        <br>
+        \(c \geq 15\)
+        <br><br>
+        <strong>Solução:</strong> c = 15 e \(n0 \geq 1\)
+        <br><br>
+        <strong>Caso Base:</strong>
+        <br><br>
+        Vamos escolher c = 15 e n0 = 2.
+        <br>
+        Para n = 2, temos:
+        <br><br>
+        \(T(2) = T(1) + 15 = 15\cdot lg1 + 15 = 15 \leq 15 \cdot lg 2 = 15\)
+        <br><br>
+        <strong>Solução: </strong> 2
+        <br><br>
+        <strong>Prova do limitante inferior:</strong>
+        <br><br>
+        Seja \(T(n) = T(n/2) + 15\).
+        <br>
+        Queremos provar que \(T(n) \geq c \cdot lgn\), \(\forall\) \(n \geq n0\), onde c e n0 são constantes positivas.
+        <br><br>
+        Vou provar por indução em n.
+        <br><br>
+        <strong>Hipótese Indutiva:</strong> Suponha que \(\forall\) k com \(n0 \leq k \leq n\), \(T(k) \geq c \cdot
+        lgk\), onde c e n0 são constantes positivas.
+        <br><br>
+        <strong>Passo Indutivo:</strong>
+        <br><br>
+        \(T(n) = T(n/2) + 15 \geq clg(n/2) + 15 = clgn - c + 15 \geq clgn\)
+        <br><br>
+        \(-c + 15 \geq 0\)
+        <br>
+        \(c \leq 15\)
+        <br><br>
+        <strong>Solução:</strong> c = 1 e \(n0 \geq 0\)
+        <br><br>
+        <strong>Caso Base:</strong>
+        <br><br>
+        Vamos escolher c = 1 e n0 = 1.
+        <br>
+        Para n = 1, temos:
+        <br><br>
+        \(T(1) = T(1/2) + 15 = clg(1/2) + 15 = 14 > clg(1/2) = -1\)
+        <br><br>
+        <strong>Solução: </strong> 1
+        <br><br>
+        <strong>b.</strong>
+        <br><br>
+        Chutemos que \(F(n) = \Theta(nlgn)\).
+        <br>
+        Assim, queremos provar que a solução para a recorrência \(F(n) = 2F(n/2) + n\) é \(\Theta(nlgn)\).
+        <br><br>
+        <strong>Prova do limitante superior:</strong>
+        <br><br>
+        Seja \(F(n) = 2F(n/2) + n\).
+        <br>
+        Queremos provar que \(F(n) \leq c \cdot nlgn\), \(\forall\) \(n \geq n0\), onde c e n0 são constantes positivas.
+        <br><br>
+        Vou provar por indução em n.
+        <br><br>
+        <strong>Hipótese Indutiva:</strong> Suponha que \(\forall\) k com \(n0 \leq k \leq n\), \(F(k) \leq c \cdot
+        klgk\), onde c e n0 são constantes positivas.
+        <br><br>
+        <strong>Passo Indutivo:</strong>
+        <br><br>
+        \(F(n) = 2F(n/2) + n \leq 2c(n/2)lg(n/2) + n = 2c(n/2)(lgn - 1) + n = cnlgn - cn + n \leq cnlgn\)
+        <br><br>
+        \(-cn + n \leq 0\)
+        <br>
+        \(n(1 - c) \leq 0\)
+        <br><br>
+        \(1 - c > 0\)
+        <br>
+        \(c < 1\) <br><br>
+            <strong>Solução:</strong> c = 1/2 e \(n0 \geq 0\)
+            <br><br>
+            <strong>Caso Base:</strong>
+            <br><br>
+            Vamos escolher c = 1/2 e n0 = 1.
+            <br>
+            Para n = 1, temos:
+            <br><br>
+            \(F(1) = 2F(1/2) + 1 = lg(1/2) + 1 = 0 \leq 1/2 \cdot 1lg1 = 0\)
+            <br><br>
+            <strong>Solução: </strong> 1
+            <br><br>
+            <strong>Prova do limitante inferior:</strong>
+            <br><br>
+            Seja \(F(n) = 2F(n/2) + n\).
+            <br>
+            Queremos provar que \(F(n) \geq c \cdot nlgn\), \(\forall\) \(n \geq n0\), onde c e n0 são constantes
+            positivas.
+            <br><br>
+            Vou provar por indução em n.
+            <br><br>
+            <strong>Hipótese Indutiva:</strong> Suponha que \(\forall\) k com \(n0 \leq k \leq n\), \(F(k) \geq c \cdot
+            klgk\), onde c e n0 são constantes positivas.
+            <br><br>
+            <strong>Passo Indutivo:</strong>
+            <br><br>
+            \(F(n) = 2F(n/2) + n \geq 2c(n/2)lg(n/2) + n \geq c(n)(lgn - 1) + n = cnlgn -cn + n \geq cnlgn\)
+            <br><br>
+            \(-cn + n \geq 0\)
+            <br>
+            \(n(1 - c) \geq 0\)
+            <br><br>
+            \(1 - c < 0\) <br>
+                \(c > 1\)
+                <br><br>
+                <strong>Solução:</strong> c = 2 e \(n0 \geq 0\)
+                <br><br>
+                <strong>Caso Base:</strong>
+                <br><br>
+                Vamos escolher c = 2 e n0 = 1.
+                <br>
+                Para n = 1, temos:
+                <br><br>
+                \(F(1) = 2F(1/2) + 1 = 4(1/2)lg(1/2) + 1 = - 2 + 1 = -1 \geq 2(1/2)lg(1/2) = -1\)
+                <br><br>
+                <strong>Solucão: </strong> 1
+                <br><br>
+    </p>
+
+    <h2>Questão 3</h2>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Enunciado: </strong> Usando o método da substituição, prove que a solução para a relação de recorrência
+        T(n)=2T(⌊n/2⌋+17)+n é O(nlgn).
+    </p>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Demonstração:</strong>
+    </p>
+
+    <p style="position: relative; margin: 40px;">
+        Seja \(T(n)=2T(⌊n/2⌋+17)+n\).
+        <br>
+        Queremos provar que \(T(n) \leq c \cdot n \cdot lg n\), \(\forall\) \(n \geq n0\), onde c e n0 são constantes
+        positivas.
+        <br><br>
+        Vou provar por indução em n.
+        <br><br>
+        <strong>Hipótese Indutiva:</strong> Suponha que \(\forall\) k com \(n0 \leq k \leq n\), \(T(k) = c \cdot
+        k \cdot lg k\), onde c e n0 são constantes positivas.
+        <br><br>
+        <strong>Passo Indutivo:</strong>
+        <br><br>
+        \(T(n)=2T(⌊n/2⌋+17)+n \leq 2c(⌊n/2⌋+17)lg(⌊n/2⌋+17)+n \leq 2c((n+34)/2)lg((n+34)/2)+n\)
+        <br><br>
+        \(\leq c(n+34)(lg(n+34) - 1)+n \leq c(n+34)lg(n+34) - c(n+34)+n \leq c(n+34)lg(n+34)\)
+        <br><br>
+        O passo indutivo falha, pois não conseguimos dizer que \( c(n+34)lg(n+34) \leq cnlgn \).
+        <br><br>
+        <strong>Hipótese 2:</strong> \(T(k) \leq c (k - 34)lg(k - 34)\), onde \(\forall n0 \leq k \leq n\).
+        <br><br>
+        <strong>Passo Indutivo:</strong>
+        <br><br>
+        \(T(n)=2T(⌊n/2⌋+17)+n \leq 2c(⌊n/2⌋-34+17)lg(⌊n/2⌋-34+17)+n \leq 2c((n-34)/2)lg((n-34)/2)+n\)
+        <br><br>
+        \(\leq c(n-34)(lg(n-34) - 1)+n \leq c(n-34)lg(n-34) - c(n-34)+n \leq c(n-34)lg(n-34)\)
+        <br><br>
+        \(- c(n-34)+n \leq 0\)
+        <br>
+        \(34c - cn + n \leq 0\)
+        <br>
+        \(- cn + n \leq -34c\)
+        <br>
+        \(cn - n \geq 34c\)
+        <br>
+        \(n(c + 1) \geq 34c\)
+        <br>
+        \(n \geq 34c/(c+1)\)
+        <br><br>
+        <strong>Solução:</strong> c = 2 e \(n0 \geq 68\)
+
+    <h2>Questão 4</h2>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Enunciado: </strong> É possível provar que a solução para a recorrência T(n)=4T(n/3)+n é
+        T(n)=Θ(\(n^{\log_34}\)).
+        Mostre que uma prova de substituição que considere T(n)≤c\(n^{\log_34}\) falha. Depois, mostre como subtrair um
+        termo de
+        ordem mais baixa para fazer com que uma prova de substituição funcione. Basta provar apenas o limitante
+        superior, não precisa provar o inferior.
+    </p>
+
+    <p style="position: relative; margin: 40px;">
+        <strong>Demonstração:</strong>
+    </p>
+
+    <p style="position: relative; margin: 40px;">
+        Irei desmonstrar que a solução para a recorrência \(T(n) = 4T(n/3) + n\) é \(\Theta(n^{log_34})\).
+        <br><br>
+        Seja \(T(n) = 4T(n/3) + n\).
+        <br>
+        Queremos provar que \(T(n) \leq c \cdot n^{log_34}\), \(\forall\) \(n \geq n0\), onde c e n0 são constantes
+        positivas.
+        <br><br>
+        Vou provar por indução em n.
+        <br><br>
+        <strong>Hipótese Indutiva:</strong> Suponha que \(\forall\) k com \(n0 \leq k \leq n\), \(T(k) = c \cdot
+        k^{log_34}\), onde c e n0 são constantes positivas.
+        <br><br>
+        <strong>Passo Indutivo:</strong>
+        <br><br>
+        \(T(n) = 4T(n/3) + n \leq 4c(n/3)^{\log_34} + n = 4cn^{\log_34} \cdot 3^{-\log_34} + n = 4cn^{\log_34} \cdot
+        4^{-1} + n = cn^{\log_34} + n\)
+        <br><br>
+        O passo indutivo falha, pois \(c \cdot n^{log_34} + n\) precisaria ser menor que \(c \cdot n^{log_34}\) e \(n\)
+        é uma constante positiva. Assim, temos uma contradição.
+        <br><br>
+        <strong>Hipótese 2:</strong> \(T(k) \leq c \cdot k^{log_34} -dk\), onde \(\forall n0 \leq k \leq n\) e \(d\) é
+        uma constante positiva.
+        <br><br>
+        <strong>Passo Indutivo:</strong>
+        <br><br>
+        \(T(n) = 4T(n/3) + n \leq 4[c(n/3)^{\log_34} - dn/3] + n = 4[c(n^{\log_34}/4) - dn/3] + n = c(n^{\log_34}) -
+        4dn/3 + n \leq c(n^{\log_34})\)
+        <br><br>
+        \(-4dn/3 + n \leq 0\)
+        <br>
+        \(n(1 - 4d/3) \leq 0\)
+        <br><br>
+        \(1 - 4d/3 \leq 0\)
+        <br>
+        \(d \geq 3/4\)
+        <br><br>
+        <strong>Solução:</strong> a = 3/4 e \(n0 \leq 0\)
+</body>
+
+</html>
