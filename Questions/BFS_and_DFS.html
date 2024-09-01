@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Avaliação Continua - 6</title>
+
+  <!-- MATHJAX 3 (através da CDN) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- MATHJAX 3 (salvo no computador) -->
+  <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+  <h1>Avaliação Continuada 6</h1>
+  <hr>
+
+  <h2>Questão 1</h2>
+
+  <img src="../Imgs/g2.jpg" alt="grafh">
+
+  <p style="position: relative; margin: 40px;">
+    <strong>Enunciado: </strong> Um teste de mesa consiste em executar manualmente os passos do algoritmo, anotando os
+    estados das variáveis ao longo da execução. Realize um teste de mesa do algoritmo de busca em largura no grafo
+    acima, iniciando no nó a. Forneça a distância e o predecessor de cada nó, conforme obtido através do algoritmo. A
+    distância de um nó é o menor número de arestas do nó até o nó inicial a. O predecessor de um nó é o pai deste nó na
+    árvore de busca em largura com raiz no nó a.
+    Obs.: Um mesmo grafo pode ter várias árvores de busca em largura corretas. Isto significa que cada aluno pode obter
+    predecessores distintos para os nós. A distância, por outro lado, é única. Ou seja, todos os alunos devem obter as
+    mesmas distâncias.
+  </p>
+
+  <p style="position: relative; margin: 40px;">
+    <strong>Explicação: </strong>Com um algoritmo de busca em largura, começamos a busca no vértice origem
+    <strong>a</strong>, e em seguida, expandiremos a busca aos seus vizinhos. Assim, após <strong>a</strong>, passaremos
+    por <strong>b</strong> e <strong>p</strong>, e assim sucetivamente. Por fim, obtemos a seguinte tabela:
+  </p>
+
+  <p style="position: relative; margin: 40px;">
+    <br><br>
+
+    \begin{array}
+    {|r|r|r|}
+    \hline
+    \text{nó} & \text{distância} & \text{predecessor} \\
+    \hline
+    a & 0 & \text{Nenhum} \\
+    b & 1 & a \\
+    p & 1 & a \\
+    c & 2 & b \\
+    n & 2 & p \\
+    d & 3 & c \\
+    m & 3 & c \\
+    l & 3 & n \\
+    e & 4 & d \\
+    j & 4 & m \\
+    k & 4 & l \\
+    f & 5 & e \\
+    h & 5 & j \\
+    i & 5 & k \\
+    g & 6 & f \\
+    \hline
+    \end{array}
+  </p>
+
+  <h2>Questão 2</h2>
+
+  <img src="../Imgs/g3.jpg" alt="grafh" />
+
+  <p style="position: relative; margin: 40px;">
+    <strong>Enunciado: </strong>
+  </p>
+
+  <p style="position: relative; margin: 40px;">
+    1) Um teste de mesa consiste em executar manualmente os passos do algoritmo, anotando os
+    estados das variáveis ao longo da execução. Realize um teste de mesa do algoritmo de busca em profundidade no grafo
+    acima, iniciando no nó a. Forneça (i) o predecessor de cada nó, (ii) o instante d que cada nó foi descoberto, e
+    (iii) o instante f em que o nó foi finalizado, conforme obtido através da execução do algoritmo recursivo visto em
+    aula. O predecessor de um nó é o pai deste nó na árvore de busca em profundidade com raiz no nó a
+    . Os nós vizinhos devem ser explorados em ordem alfabética, ou seja, todos os alunos devem obter a mesma árvore de
+    busca em profundidade.
+  </p>
+
+  <p style="position: relative; margin: 40px;">
+    2) Realize um teste de mesa do algoritmo que encontra os componentes fortemente conexos para o grafo acima. Forneça
+    os
+    componentes fortemente conexos encontrados, ou seja, os conjuntos maximais de vértices mutuamente alcançáveis. Obs.:
+    Independente da ordem em que os vértices vizinhos são explorados, os componentes conexos encontrados são os mesmos.
+  </p>
+
+  <p style="position: relative; margin: 40px;">
+    <strong>Explicação:</strong>
+  </p>
+
+  <p style="position: relative; margin: 40px;">
+    <strong>1)</strong> Com o algoritmo de busca em profundidade, realizaremos a busca apartir do vértice de origem
+    <strong>a</strong> e seguiremos até o próximo vértice alcançável de <strong>a</strong> seguindo a ordem alfabética.
+    realizaremos o passo anterior até que não possamos alcançar um outro vértice que não foi previamente descoberto.
+    Assim, a busca continua do último vértice que possue vizinhos a serem descobertos. Por fim, obtemos a seguinte
+    tabela:
+  </p>
+
+  <p style="position: relative; margin: 40px;">
+    \begin{array}
+    {|r|r|r|r|}
+    \hline
+    \text{nó} & \text{predecessor} & \text{descoberta (d)} & \text{finalização (f)} \\
+    \hline
+    a & \text{Nenhum} & 1 & 18 \\
+    b & a & 2 & 9 \\
+    e & b & 3 & 8 \\
+    i & e & 4 & 5 \\
+    k & e & 6 & 7 \\
+    d & a & 10 & 17 \\
+    f & d & 11 & 16 \\
+    h & f & 12 & 15 \\
+    l & h & 13 & 14 \\
+    c & \text{Nenhum} & 19 & 20 \\
+    g & \text{Nenhum} & 21 & 24 \\
+    j & g & 22 & 23 \\
+    \hline
+    \end{array}
+  </p>
+
+  <p style="position: relative; margin: 40px;">
+    <strong>2) </strong>Dado o grafo direcionado anteriormente apresentado, podemos obter os seguinte conjuntos máximais
+    de vértice mutuamente alcançáveis:
+
+    <ul style="position: relative; margin: 40px;">
+      <li>{ <strong>c</strong> }</li>
+      <li>{ <strong>i</strong> }</li>
+      <li>{ <strong>b</strong>, <strong>e</strong> }</li>
+      <li>{ <strong>k</strong> }</li>
+      <li>{ <strong>a</strong> }</li>
+      <li>{ <strong>d</strong>, <strong>f</strong>, <strong>h</strong>, <strong>l</strong> }</li>
+      <li>{ <strong>j</strong> }</li>
+      <li>{ <strong>g</strong> }</li>
+    </ul>
+  </p>
+
+</body>
+
+</html>

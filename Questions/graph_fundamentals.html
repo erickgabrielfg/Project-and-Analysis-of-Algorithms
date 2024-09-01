@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Avaliação Continua - 5</title>
+
+  <!-- MATHJAX 3 (através da CDN) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- MATHJAX 3 (salvo no computador) -->
+  <!-- <script type="text/javascript" async src="../../../Aplicativos/MathJax-master/es5/tex-mml-chtml.js" async></script> -->
+</head>
+
+<body>
+  <h1>Avaliação Continuada 5</h1>
+  <hr>
+
+  <h2>Questão 1</h2>
+
+  <p style="position: relative; margin: 40px;">
+    <strong>Enunciado: </strong> (Encontrar o máximo de um vetor) Considere o problema de encontrar o máximo em um vetor
+    de n números. Projete um algoritmo de divisão e conquista para o problema. Experimente duas abordagens: usar um
+    subproblema de tamanho n−1 e, a segunda, dividir o subproblema em dois subproblemas de tamanho aproximadamente n/2.
+    Qual a melhor abordagem? Qual tem a melhor complexidade no pior caso? (Justifique formalmente).
+  </p>
+
+  <p style="position: relative; margin: 40px;">
+    <strong>Demonstração:</strong>
+    <br><br>
+    Nessa questão, projetarei um algoritmo de divisão e conquista que retorna o maior elemento de um vetor utilizando
+    duas abordagens: divisão em um subproblema de tamanho n - 1 e em um subproblema de tamanho n/2. As duas abordagens
+    possuem passos semelhantes, por isso, explicitarei qual abordagem possue qual passo quando necessário.
+    <br><br>
+    <strong>Especificação</strong>
+    <br><br>
+    Pré-condições: a entrada é uma lista L[1 ... n] com n números, o índice "ini" do primeiro elemento e o índice "fim"
+    do
+    último elemento.
+    <br>
+    Pós-condições: a saída é o maior elemento da lista L.
+    <br><br>
+    <strong>Caso base</strong>
+    <br><br>
+    Caso o índice do primeiro elemento seja igual ao índice do último elemento, ou seja, eles apontam ao mesmo elemento,
+    retorne este elemento.
+    <br><br>
+    <strong>Divisão</strong>
+    <br><br>
+    Abordagem de tamanho n - 1: Não há uma forma de divisão.
+    <br><br>
+    Abordagem de tamanho n/2: Calculamos o ponto médio, ou seja, o piso da média dos índices ini e fim. Por fim,
+    guardamos esse resultado em uma variável chamada "meio".
+    <br><br>
+    <strong>Conquista</strong>
+    <br><br>
+    Abordagem de tamanho n - 1: Utilizaremos duas variáveis nesse passo. Com a variável "left", armazenamos o retorno da
+    função recursiva com os parâmetros L, ini e fim - 1. Com a variável "right", armazenamos o retorno da função
+    recursiva com os parâmetros L, ini + 1 e fim.
+    <br><br>
+    Abordagem de tamanho n/2: Utilizaremos duas variáveis nesse passo. Com a variável "left", armazenamos o retorno da
+    função recursiva com os parâmetros L, ini e meio. Com a variável "right", armazenamos o retorno da função
+    recursiva com os parâmetros L, meio + 1 e fim.
+    <br><br>
+    <strong>Combinação</strong>
+    <br><br>
+    Comparar os valores de left e right, e no fim, retornar o maior valor entre eles.
+    <br><br>
+    <strong>Pseudocódigo</strong>
+    <br><br>
+    Abordagem de tamanho n - 1:
+  <pre>
+      <code>
+        <strong>EncontraMax(</strong> L, ini, fim <strong>)</strong>
+          if ini = fim
+            Retorne L[ini]
+          else
+            left = EncontraMax(L, ini, fim - 1)
+            right = EncontraMax(L, ini + 1, fim)
+            
+            if left > right
+              Retorne left
+            else
+              Retorne right
+      </code>
+    </pre>
+  <p style="position: relative; margin: 40px;">
+    Abordagem de tamanho n/2:
+  </p>
+  <pre>
+      <code>
+        <strong>EncontraMax(</strong> L, ini, fim <strong>)</strong>
+          if ini = fim
+            Retorne L[ini]
+          else
+            meio = piso((ini + fim) / 2)
+
+            left = EncontraMax(L, ini, meio)
+            right = EncontraMax(L, meio + 1, fim)
+            
+            if left > right
+              Retorne left
+            else
+              Retorne right
+      </code>
+    </pre>
+  <p style="position: relative; margin: 40px;">
+    <strong>Complexidade</strong>
+    <br><br>
+    Abordagem de tamanho n - 1:
+    <br><br>
+    Agora, iremos calcular a complexidade linha a linha do algoritmo.
+    <br><br>
+    <strong>1.</strong> \(\Theta(1)\)
+    <br>
+    <strong>2.</strong> \(\Theta(1)\)
+    <br>
+    <strong>3.</strong> \(\Theta(1)\)
+    <br>
+    <strong>4.</strong> \(T(n - 1)\)
+    <br>
+    <strong>5.</strong> \(T(n - 1)\)
+    <br>
+    <strong>6.</strong> \(\Theta(n - 1)\)
+    <br>
+    <strong>7.</strong> \(\Theta(n - 1)\)
+    <br>
+    <strong>8.</strong> \(\Theta(n - 1)\)
+    <br>
+    <strong>9.</strong> \(\Theta(n - 1)\)
+    <br><br>
+    T(n) = 2T(n - 1) + \(\Theta(n)\)
+    <br><br>
+    Podemos obter uma relação de recorrência:
+    <br><br>
+    \(
+    T(n) =
+    \begin{cases}
+    1, & \text{se } n = 1 \\
+    2T(n - 1) + n, & \text{se } n > 1
+    \end{cases}
+    \)
+    <br><br>
+    Como a abordagem não divide o seu tamanho, apenas diminui o mesmo em 1, podemos concluir que o algoritmo possui
+    complexidade \(\Theta(n)\), visto que, para algum \(n\) suficientemente grande, o algoritmo irá percorrer todos os
+    elementos do vetor.
+    <br><br>
+    Abordagem de tamanho n/2:
+    <br><br>
+    Agora, iremos calcular a complexidade linha a linha do algoritmo.
+    <br><br>
+    <strong>1.</strong> \(\Theta(1)\)
+    <br>
+    <strong>2.</strong> \(\Theta(1)\)
+    <br>
+    <strong>3.</strong> \(\Theta(1)\)
+    <br>
+    <strong>4.</strong> \(\Theta(1)\)
+    <br>
+    <strong>5.</strong> \(T(n/2)\)
+    <br>
+    <strong>6.</strong> \(T(n/2)\)
+    <br>
+    <strong>7.</strong> \(\Theta(n)\)
+    <br>
+    <strong>8.</strong> \(\Theta(n)\)
+    <br>
+    <strong>9.</strong> \(\Theta(n)\)
+    <br>
+    <strong>10.</strong> \(\Theta(n)\)
+    <br><br>
+    T(n) = 2T(n/2) + \(\Theta(n)\)
+    <br><br>
+    Podemos obter uma relação de recorrência:
+    <br><br>
+    \(
+    T(n) =
+    \begin{cases}
+    1, & \text{se } n = 1 \\
+    2T(n/2) + n, & \text{se } n > 1
+    \end{cases}
+    \)
+    <br><br>
+    Utilizaremos o Teorema Mestre para calcular a complexidade do algoritmo.
+    <br><br>
+    Nesse caso, a = 2, b = 2 e f(n) = n.
+    <br><br>
+    \(n^{log_ba} = n^{log_22} = n¹\)
+    <br><br>
+    Assim, como f(n) = n, podemos concluir que f(n) = \(\Theta(n)\) e o <strong>Caso 2</strong> do Teorema Mestre se
+    aplica.
+    <br>
+    Logo:
+    <br><br>
+    \(T(n) = \Theta(n^{log_ba}lgn) = \Theta(nlgn)\)
+    <br><br>
+    <strong>Conclusão</strong>
+    <br><br>
+    A abordagem de tamanho n - 1 é a melhor abordagem para esse problema, visto que, para um \(n\) suficientemente
+    grande e no pior caso, a abordagem de tamanho n/2 gastará mais tempo.
+
+
+
+  </p>
+
+  <h2>Questão 2</h2>
+
+  <p style="position: relative; margin: 40px;">
+    <strong>Enunciado: </strong> O transposto do grafo direcionado \(G=(V,E)\) é o grafo \(GT=(V,E^T)\), em
+    que\(ET={(v,u)∣u,v∈V e
+    (u,v)∈E}\). Assim, de um modo informal, podemos dizer que GT é G com todas as suas arestas invertidas. Descreva
+    (forneça) algoritmos eficientes para calcular GT a partir de G, para as representações de lista de adjacências e
+    matriz de adjacências de G. Analise os tempos de execução dos seus dois algoritmos.
+
+    As análises de complexidade feitas nessa questão não precisam ser feitas de modo formal, podem ser feitas de modo
+    informal. Só se certifique de que sejam o mais fiéis possíveis à complexidade real dos seus algoritmos.
+  </p>
+
+  <p style="position: relative; margin: 40px;">
+    <strong>Demonstração:</strong>
+    <br><br>
+    Dado um grafo G = (V, E), onde V é o conjunto de vértices e E é o conjunto de arestas, podemos obter o grafo
+    transposto \(G^T\) com o seguinte algoritmo:
+    <br><br>
+  <pre>
+      <code>
+        <strong>grafoTransposto( </strong> G, n <strong>)</strong>
+          inicializa GT com n vértices
+
+          para cada vértice u em G faça
+            para cada vétice v em G[u] faça
+              adiciona a aresta (v, u) em GT
+          
+          retorne GT
+      </code>
+    </pre>
+  </p>
+  <p style="position: relative; margin: 40px;">
+    Assim, podemos gerar um grafo transposto \(G^T\) com base no grafo \(G\). Visto que iteramos uma vez sobre cada
+    vértice e suas respectivas arestas, podemos garantir que a complexidade desse algoritmo é \(O(V + E)\).
+  </p>
+
+
+  <h2>Questão 3</h2>
+
+  <p style="position: relative; margin: 40px;">
+    <strong>Enunciado: </strong> Nesta questão, vamos precisar da seguinte definição: Dado um grafo direcionado G=(V,E),
+    um sorvedouro universal de G é um vértice de G com grau de entrada |V|−1 e grau de saída 0.
+
+    A maioria dos algoritmos em grafos que adota uma representação por matriz de adjacências como entrada exige o tempo
+    O(V2), mas há algumas exceções. Mostre como determinar se um grafo direcionado G contém um sorvedouro universal no
+    tempo O(V), dada como entrada uma matriz de adjacências para G.
+
+    A análise de complexidade feita nessa questão não precisa ser feita de modo formal, pode ser feita de modo informal.
+    Só se certifique de que seja o mais fiél possível à complexidade real do seu algoritmo.
+  </p>
+  <p style="position: relative; margin: 40px;">
+    <strong>Demonstração:</strong>
+    <br><br>
+    Dado um grafo direcionado G = (V, E), onde V é o conjunto de vértices e E é o conjunto de arestas, podemos
+    determinar se G contém um sorvedouro universal no tempo \(O(V)\) com o seguinte algoritmo:
+    <br><br>
+  <pre>
+      <code>
+        <strong>encontraSovedouroUniversal( </strong>matriz, V<strong> )</strong>
+          i = 0
+
+          para j de 1 até V faça
+            se matriz[i][j] = 1 então
+              i = j
+
+          para j de 1 até V faça
+            se i != j então
+              se matriz[i][j] != 0 e matriz[j][i] != 1 então
+                retorne 
+          
+          retorne i
+      </code>
+    </pre>
+  </p>
+  <p style="position: relative; margin: 40px;">
+    <strong>Explicação: </strong>
+    <br><br>
+    Nesse código, inicializamos a variável i, que será alvo de comparações para nos
+    garantir de que existe ou não um sovedouro universal na matriz. No primeiro laço, verificamos se o valor na linha i
+    da coluna j é igual a 1, se sim, significa que o vértice i possui uma aresta para o vértice j, o desqualificando
+    como um possui candidato. Por fim, atualizamos o valor da variável i para j, caso a condição anterior se prove
+    verdadeira.
+    <br><br>
+    No segundo laço, verificamos se i é diferente de j para garantir de que não estamos comparando uma relação do
+    vértice com ele mesmo. Depois, verificamos se a areta (i, j) é diferente de 0 e se a aresta (j, i) é diferente de 1,
+    o que nos garante de que o grau de entrada do vértice é sempre |V| - 1 e o grau de sáida é 0. Por fim, caso a
+    condição se prove falsa, retornamos o valor de i, o sovedouro universal dessa matriz.
+    <br><br>
+    Assim, dado a natureza do algoritmo, podemos constatar sua complexidade como \(O(V)\), visto que o mesmo não possui
+    laços de repetição aninhados e que o numéro de iterações será igual ao número de vértices do grafo.
+  </p>
+</body>
+
+</html>
